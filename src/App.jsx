@@ -1,0 +1,40 @@
+import { useEffect, useState } from 'react'
+import axios from "axios"
+
+import "./app.css"
+
+function App() {
+  const [data, setdata] = useState()
+  const api = "https://newsapi.org/v2/everything?q=apple&from=2024-08-04&to=2024-08-04&sortBy=popularity&apiKey=697a84db0dd447a68af8b975de4ff367";
+  useEffect(() => {
+    axios.get(api).then((res) => {
+      setdata(res.data)
+      console.log(res.data)
+    }).catch((err) => {
+
+      console.log(err, "server error")
+    })
+  }, [])
+  return (
+
+    <div className='container'>
+      <nav className='logo'>
+        <h1 >NdTche</h1>
+        <h1 className='p'> nati daily news</h1>
+      </nav>
+      <div className='news-content'>
+        {data ? (data.articles.map((articl, index) => (
+          <div className="article" key={index}>
+            <h2 > author {articl.author}</h2>
+            <h3> title {articl.title}</h3>
+            <p> {articl.description}</p>
+            <img className='articleimg' src={articl.urlToImage} /></div>
+        ))) : <div>no aricle</div>}
+
+      </div>
+    </div>
+
+  )
+}
+
+export default App
