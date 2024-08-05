@@ -4,8 +4,11 @@ import axios from "axios"
 import "./app.css"
 
 function App() {
-  const [data, setdata] = useState()
-  const api = "https://newsapi.org/v2/everything?q=apple&from=2024-08-04&to=2024-08-04&sortBy=popularity&apiKey=697a84db0dd447a68af8b975de4ff367";
+  const [data, setdata] = useState();
+  const [name, setname] = useState("apple");
+
+  const api = `https://newsapi.org/v2/everything?q=${name}&from=2024-08-04&to=2024-08-04&sortBy=popularity&apiKey=697a84db0dd447a68af8b975de4ff367`;
+
   useEffect(() => {
     axios.get(api).then((res) => {
       setdata(res.data)
@@ -14,7 +17,7 @@ function App() {
 
       console.log(err, "server error")
     })
-  }, [])
+  }, [name])
   return (
 
     <div className='container'>
@@ -22,6 +25,11 @@ function App() {
         <h1 >NdTche</h1>
         <h1 className='p'> nati daily news</h1>
       </nav>
+      <input type="text"
+        placeholder='enter news name'
+        value={name}
+        onChange={(e) => setname(e.target.value)}
+      />
       <div className='news-content'>
         {data ? (data.articles.map((articl, index) => (
           <div className="article" key={index}>

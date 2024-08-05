@@ -5,6 +5,11 @@ body {
   color: white
 }
 
+input {
+  padding: 8px;
+  border-radius: 7px;
+}
+
 .container {
   padding: 20px;
   display: flex;
