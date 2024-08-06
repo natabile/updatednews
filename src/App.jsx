@@ -7,7 +7,7 @@ function App() {
   const [data, setdata] = useState();
   const [name, setname] = useState("apple");
 
-  const api = `https://newsapi.org/v2/everything?q=${name}&from=2024-08-04&to=2024-08-04&sortBy=popularity&apiKey=697a84db0dd447a68af8b975de4ff367`;
+  const api = `https://newsapi.org/v2/everything?q=${name}&from=2024-08-04&to=2024-08-04&sortBy=popularity&apiKey=680874257b9f46139109ad94964ec660`;
 
   useEffect(() => {
     axios.get(api).then((res) => {
